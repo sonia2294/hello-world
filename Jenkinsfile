@@ -1,42 +1,35 @@
-pipeline{
-agent any
-
-stages{
-
-    stage('checkout scm') {
-        steps {
-            script{
-                git credentialsId: 'demoId', url: 'ssh://git@github.com:sonia2294/hello-world.git'
-                sh 'git branch -r | awk \'{print $1}\' ORS=\'\\n\' >>branch.txt'
-            }
-
-        }
+def _setGit(){
+    withCredentials([usernamePassword(credentialsId: 'demoId', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]){
+        sh 'git config --global user.email "soniatandel.st@gmail.com"
+        sh 'git config --global user.name "Sonia Tandel"
+        sh 'git init'
+        
+        sh 'git config remote.origin.url https://${GIT_USER}:${GIT_PASS]@github.com/sonia2294/hello-world.git'
+        
+        sh 'git remote set-url https://${GIT_USER}:${GIT_PASS]@github.com/sonia2294/hello-world.git'
+        sh 'git pull'
+        
+        sh 'git checkout master'
+        sh 'git pull'
     }
-     stage('get build Params User Input') {
-        steps{
-            script{
+}
 
-                liste = readFile 'branch.txt'
-                echo "please click on the link here to chose the branch to build"
-                env.BRANCH_SCOPE = input message: 'Please choose the branch to build ', ok: 'Validate!',
-                        parameters: [choice(name: 'BRANCH_NAME', choices: "${liste}", description: 'Branch to build?')]
+def checkoutBranch(){
 
+}
 
-            }
-        }
-    } 
-    stage("checkout the branch"){
-        steps{
-            echo "${env.BRANCH_SCOPE}"
-            git  credentialsId: 'demoId', url: 'ssh://git@github.com:sonia2294/hello-world.git'
-            sh "git checkout -b build ${env.BRANCH_NAME}"
-        }
-    }
-    stage(" Build"){
-        steps{
-            echo "Building ${params.BRANCH_NAME}"
-            }
-        }
-    }
-
+node{
+    skipDefaultCheckout()
+    
+    _setGit()
+    /*
+    properties([
+        parameters([
+            choice(choices:['master','develop'].join('\n'), description: 'Select a branch', name: 'branch')
+        ])
+    ])
+    */
+   
+    checkoutBranch()
+    
 }
