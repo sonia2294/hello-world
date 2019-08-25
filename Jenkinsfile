@@ -1,18 +1,15 @@
 node{
 properties(
-    [parameters([choice(choices: ["A", "B", "C"].join("\n"),
+    [parameters([choice(choices: ["master","develop"].join("\n"),
     description: 'Some choice parameter', 
     name: 'environment')])])
     
     switch(params.environment ){
-        case 'A':
-            echo "A will be processed"
+        case 'master':
+            echo "master will be processed"
             break
-        case 'B':
-            echo "B will be processed"
-            break
-        case 'C':
-            echo "C will be processed"
+        case 'develop':
+            echo "develop will be processed"
             break
     }
 }
