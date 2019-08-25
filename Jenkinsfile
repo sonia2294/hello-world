@@ -4,6 +4,10 @@ def _setGit(){
         
         echo "${GIT_USER}"
         echo "${GIT_PASS}"
+        
+       sh 'git config remote.origin.url https://${GIT_USER}:${GIT_PASS}@github.com/sonia2294/hello-world.git'
+        
+        sh 'git remote set-url origin https://${GIT_USER}:${GIT_PASS}@github.com/sonia2294/hello-world.git'
 
     }
 }
