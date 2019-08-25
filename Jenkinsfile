@@ -3,8 +3,7 @@ def _setGit(){
         sh 'git config --global user.email "soniatandel.st@gmail.com"'
         sh 'git config --global user.name "Sonia Tandel"'
         
-        echo "${GIT_USER}"
-        echo "${GIT_PASS}"
+ 
         
         sh 'git config remote.origin.url https://github.com/sonia2294/hello-world.git'
         
@@ -15,9 +14,7 @@ def _setGit(){
     }
 }
 
-def checkoutBranch(){
 
-}
 
 node{
     skipDefaultCheckout()
@@ -31,6 +28,6 @@ node{
     ])
     */
    
-    checkoutBranch()
+ 
     
 }
