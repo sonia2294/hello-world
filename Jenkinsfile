@@ -4,9 +4,9 @@ def _setGit(){
         sh 'git config --global user.name "Sonia Tandel"'
         
         
-        sh 'git config remote.origin.url https://${GIT_USER}:${GIT_PASS]@github.com/sonia2294/hello-world.git'
+        sh 'git config remote.origin.url https://${GIT_USER}:${GIT_PASS}@github.com/sonia2294/hello-world.git'
         
-        sh 'git remote set-url https://${GIT_USER}:${GIT_PASS]@github.com/sonia2294/hello-world.git'
+        sh 'git remote set-url https://${GIT_USER}:${GIT_PASS}@github.com/sonia2294/hello-world.git'
         sh 'git pull'
         
         sh 'git checkout master'
