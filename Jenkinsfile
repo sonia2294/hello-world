@@ -3,6 +3,8 @@ def _setGit(){
         sh 'git config --global user.email "soniatandel.st@gmail.com"'
         sh 'git config --global user.name "Sonia Tandel"'
         
+        echo "${GIT_USER}"
+        echo "${GIT_PASS}"
         
         sh 'git config remote.origin.url https://${GIT_USER}:${GIT_PASS}@github.com/sonia2294/hello-world.git'
         
