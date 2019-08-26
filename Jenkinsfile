@@ -6,7 +6,7 @@ node{
 
     properties([
         parameters([
-            choice(choices:['master','develop'].join('\n'), description: 'Select a branch', name: 'branch', defaultValue = 'None')
+            choice(choices:['master','develop'].join('\n'), description: 'Select a branch', name: 'branch', defaultValue = 'master')
         ])
     ])
 
